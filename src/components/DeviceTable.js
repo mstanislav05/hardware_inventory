@@ -33,6 +33,7 @@ export default function DeviceTable(props) {
                     <th>Asset Tag</th>
                     <th>Currently Assigned To</th>
                     <th>Description</th>
+                    <th>Key</th>
                 </tr>
                     {filteredData.map(data => {
                         return (

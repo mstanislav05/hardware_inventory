@@ -2,7 +2,6 @@ import {Link} from "react-router-dom";
 
 export default function TableRow(props) {
     return (
-
         <tr>
             <td id='edit'>
                 <Link
@@ -16,6 +15,7 @@ export default function TableRow(props) {
             <td id='assetTag'>{props.rowData.assetTag}</td>
             <td id='currentlyAssignedTo'>{props.rowData.currentlyAssignedTo}</td>
             <td id='description'>{props.rowData.description}</td>
+            <td id='key'>{props.rowData.id}</td>
         </tr>
 
     )

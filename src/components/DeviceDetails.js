@@ -1,8 +1,11 @@
 import {useLocation} from "react-router-dom";
 import styles from './DeviceDetails.module.css';
-import {useRef} from "react";
+import {useContext, useRef} from "react";
+import DevicesContext from "../store/devices-context";
 
 export default function DeviceDetails(props) {
+    const devicesCtx = useContext(DevicesContext);
+
     let currentRowData = null;
     const stateRowData = useLocation().state;
     if (stateRowData !== undefined) {
@@ -25,9 +28,9 @@ export default function DeviceDetails(props) {
         }
 
         if(props.createMode) {
-            props.addDevice(updatedObj);
+            devicesCtx.addDevice(updatedObj);
         } else {
-            props.updateDeviceDetails(updatedObj);
+            devicesCtx.updateDevice(updatedObj);
         }
     }
     return (
