@@ -1,10 +1,10 @@
 import {useLocation} from "react-router-dom";
 import styles from './DeviceDetails.module.css';
-import {useContext, useRef} from "react";
-import DevicesContext from "../store/devices-context";
+import {useRef} from "react";
+import {useDispatch} from "react-redux";
 
 export default function DeviceDetails(props) {
-    const devicesCtx = useContext(DevicesContext);
+    const dispatch = useDispatch();
 
     let currentRowData = null;
     const stateRowData = useLocation().state;
@@ -28,9 +28,9 @@ export default function DeviceDetails(props) {
         }
 
         if(props.createMode) {
-            devicesCtx.addDevice(updatedObj);
+            dispatch({type: 'add', deviceData: updatedObj})
         } else {
-            devicesCtx.updateDevice(updatedObj);
+            dispatch({type: 'update', deviceData: updatedObj})
         }
     }
     return (

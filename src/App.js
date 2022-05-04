@@ -1,18 +1,19 @@
 import './App.css';
-import {DevicesContextProvider} from "./store/devices-context";
 import AppComponent from "./components/AppComponent";
+import devicesStore from "./store/devices.store";
+import {Provider} from "react-redux";
 
 function App() {
     return (
+        <Provider store={devicesStore}>
         <div>
             <div>
                 <img src={require('./images/lt.jpeg')} alt="logo"/>
             </div>
-            <DevicesContextProvider>
                 <AppComponent>
                 </AppComponent>
-            </DevicesContextProvider>
         </div>
+        </Provider>
     );
 }
 

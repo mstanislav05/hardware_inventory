@@ -1,13 +1,14 @@
-import {useContext} from "react";
-import DevicesContext from "../store/devices-context";
 import {Route, Switch} from "react-router-dom";
 import DeviceTable from "./DeviceTable";
 import DeviceDetails from "./DeviceDetails";
+import {useSelector} from "react-redux";
+
 
 export default function AppComponent() {
-    const deviceContext = useContext(DevicesContext);
+    const devices = useSelector(state => state.devices);
+    const isLoading = useSelector(state => state.loading);
 
-    if(deviceContext.loadingState) {
+    if(isLoading) {
         return (
             <section>
                 <p>
@@ -17,18 +18,18 @@ export default function AppComponent() {
         )
     }
     return (
-        <div>
-            <Switch>
-                <Route path='/' exact={true}>
-                    <DeviceTable tableData={deviceContext.devices}/>
-                </Route>
-                <Route path='/view/:id'>
-                    <DeviceDetails createMode={false}/>
-                </Route>
-                <Route path='/create'>
-                    <DeviceDetails createMode={true}/>
-                </Route>
-            </Switch>
-        </div>
+            <div>
+                <Switch>
+                    <Route path='/' exact={true}>
+                        <DeviceTable tableData={devices}/>
+                    </Route>
+                    <Route path='/view/:id'>
+                        <DeviceDetails createMode={false}/>
+                    </Route>
+                    <Route path='/create'>
+                        <DeviceDetails createMode={true}/>
+                    </Route>
+                </Switch>
+            </div>
     );
 }
